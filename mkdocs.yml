@@ -1,0 +1,5 @@
+site_name: Jiayi's Blog
+nav:
+  - Home: index.md
+  - About: about.md
+theme: readthedocs
