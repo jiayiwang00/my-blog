@@ -1,5 +1,52 @@
 site_name: Jiayi's Blog
+site_url: ""
+site_author: Jiayi
+copyright: Copyright &copy; 2026 Jiayi
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: 切换暗色模式
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: 切换亮色模式
+
+plugins:
+  - search
+  - tags
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+
 nav:
   - Home: index.md
+  - Installation:
+      - ClaudeCode + DeepSeek安装教程: Installation/ClaudeCode+DeepSeek安装教程.md
+      - Miniconda安装教程: Installation/miniconda安装教程.md
   - About: about.md
-theme: readthedocs
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jiayiwang00
