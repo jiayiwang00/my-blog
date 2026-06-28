@@ -57,8 +57,6 @@ Django 5.0
 Python 3.8 旧版本依赖包
 ```
 
-如果所有包都装在同一个 Python 里面，很容易冲突。
-
 使用 Miniconda 后，可以分别创建环境：
 
 ```bash
@@ -78,11 +76,6 @@ conda create -n old_project python=3.8
 | 默认安装包 | 很少 | 很多 |
 | 灵活性 | 高 | 一般 |
 | 安装速度 | 快 | 慢 |
-| 适合人群 | 想自己控制环境的人 | 数据科学初学者 |
-
-总结：
-
-> Miniconda 是精简版，Anaconda 是全家桶。
 
 ---
 
@@ -118,7 +111,6 @@ macOS 有两种常见安装方式：
 conda --version
 ```
 
-如果能显示类似下面的内容，说明安装成功：
 
 ```bash
 conda 26.x.x
@@ -128,33 +120,7 @@ conda 26.x.x
 
 ## 4.2 macOS 方法二：命令行安装，推荐
 
-### 第一步：确认 Mac 芯片类型
-
-打开 Terminal，输入：
-
-```bash
-uname -m
-```
-
-如果输出：
-
-```bash
-arm64
-```
-
-说明是 Apple Silicon Mac。
-
-如果输出：
-
-```bash
-x86_64
-```
-
-说明是 Intel Mac。
-
----
-
-### 第二步：下载 Miniconda 安装脚本
+### 第一步：下载 Miniconda 安装脚本
 
 Apple Silicon Mac 使用：
 
@@ -170,7 +136,7 @@ curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
 
 ---
 
-### 第三步：运行安装脚本
+### 第二步：运行安装脚本
 
 Apple Silicon Mac：
 
@@ -207,7 +173,7 @@ bash Miniconda3-latest-MacOSX-x86_64.sh
 
 ---
 
-### 第四步：让配置生效
+### 第三步：让配置生效
 
 安装完成后，可以关闭 Terminal 再重新打开。
 
@@ -223,7 +189,7 @@ source ~/.zshrc
 
 ---
 
-### 第五步：验证安装
+### 第四步：验证安装
 
 ```bash
 conda --version
@@ -254,13 +220,7 @@ Windows 也有两种安装方式：
 
 1. 打开 Anaconda 官方下载页面。
 2. 找到 **Miniconda Installer**。
-3. 选择：
-
-```text
-Windows 64-bit Graphical Installer
-```
-
-4. 下载 `.exe` 安装包。
+3. 下载 `.exe` 安装包。
 
 ---
 
@@ -270,13 +230,6 @@ Windows 64-bit Graphical Installer
 2. 双击 Miniconda 的 `.exe` 安装文件。
 3. 点击 Next。
 4. 阅读协议后点击 I Agree。
-5. 安装类型推荐选择：
-
-```text
-Just Me
-```
-
-不推荐新手选择 All Users，因为可能需要管理员权限，也更容易出现权限问题。
 
 ---
 
@@ -293,7 +246,7 @@ C:\Users\你的用户名\miniconda3
 例如：
 
 ```text
-C:\Users\wangjiayi\miniconda3
+C:\Users\xxxx\miniconda3
 ```
 
 不太推荐：
@@ -442,44 +395,6 @@ Anaconda Prompt
 conda --version
 ```
 
-一般就可以正常使用。
-
----
-
-### 问题 2：为什么不建议勾选 Add to PATH？
-
-因为 Windows 可能已经有其他 Python。
-
-如果把 Miniconda 加进 PATH，可能会导致：
-
-```text
-python 指向混乱
-pip 安装到错误环境
-Django 项目使用了错误版本 Python
-```
-
-所以新手更推荐使用 Anaconda Prompt。
-
----
-
-### 问题 3：安装路径为什么不要有空格？
-
-例如：
-
-```text
-C:\Program Files\miniconda3
-```
-
-这里 `Program Files` 中间有空格。
-
-某些 Python 包、编译工具或命令行脚本可能不喜欢带空格的路径。
-
-更推荐：
-
-```text
-C:\Users\你的用户名\miniconda3
-```
-
 ---
 
 # 6. 安装后常用 conda 命令
@@ -510,12 +425,6 @@ conda info --envs
 
 ```text
 base                  *  /Users/xxxx/miniconda3
-```
-
-或者 Windows 上类似：
-
-```text
-base                  *  C:\Users\xxxx\miniconda3
 ```
 
 其中 `*` 表示当前正在使用的环境。
@@ -575,13 +484,6 @@ $ conda install numpy pandas
 $ pip install django
 ```
 
-一般来说：
-
-```text
-数据科学 / 机器学习库：可以优先考虑 conda
-普通 Python 包 / Web 开发包：pip 也很常见
-```
-
 ---
 
 ## 查看所有虚拟环境
@@ -607,132 +509,13 @@ $ conda list
 $ conda remove -n [虚拟环境名称] --all
 ```
 
-
-
 ## 删除虚拟环境
 
 ```bash
 $ conda remove -n [虚拟环境名称]
 ```
 
-
-
----
-
-# 7. Django 项目示例
-
-如果你要创建一个 Django 项目，可以这样做。
-
----
-
-## macOS / Windows 通用步骤
-
-创建环境：
-
-```bash
-$ conda create -n django_env python=3.10
-```
-
-进入环境：
-
-```bash
-$ conda activate django_env
-```
-
-安装 Django：
-
-```bash
-$ pip install django
-```
-
-创建项目：
-
-```bash
-$ django-admin startproject mysite
-```
-
-进入项目：
-
-```bash
-$ cd mysite
-```
-
-运行项目：
-
-```bash
-$ python manage.py runserver
-```
-
-看到类似：
-
-```text
-Starting development server at http://127.0.0.1:8000/
-```
-
-说明 Django 项目启动成功。
-
----
-
-# 8. 使用建议
-
-## 8.1 不建议直接在 base 环境做项目
-
-`base` 是 Miniconda 默认环境。
-
-不建议在 base 里安装太多项目包，因为时间久了容易变乱。
-
-推荐：
-
-```text
-一个项目 = 一个独立 conda 环境
-```
-
-例如：
-
-```bash
-conda create -n django_project python=3.10
-conda create -n data_analysis python=3.11
-conda create -n old_project python=3.8
-```
-
----
-
-## 8.2 pip 和 conda 可以一起用吗？
-
-可以，但建议先用 conda 安装大包，再用 pip 安装 conda 里没有的包。
-
-推荐顺序：
-
-```bash
-$ conda install numpy pandas
-$ pip install django
-```
-
-不要在没激活环境的情况下随便运行 pip，否则可能安装到错误的 Python 里。
-
-安装前先确认当前环境：
-
-```bash
-$ conda info --envs
-```
-
----
-
-# 9. 总结
-
-Miniconda 是一个轻量级 Python 环境管理工具，适合用来创建独立 Python 环境、安装不同版本的 Python 和依赖包。
-
-相比 Anaconda，Miniconda 更小、更灵活，更适合想自己管理项目环境的用户。
-
-最常用的流程是：
-
-```bash
-conda create -n 项目环境名 python=版本号
-conda activate 项目环境名
-pip install 或 conda install 安装需要的包
-```
-
-一句话总结：
+总结：
 
 > Miniconda 主要用来管理 Python 环境，避免不同项目之间的版本冲突。
 
