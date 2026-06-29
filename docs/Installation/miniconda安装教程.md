@@ -256,6 +256,7 @@ $ conda activate my_env
 ```bash
 $ conda deactivate
 ```
+
 ---
 
 ## 安装包
